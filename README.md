@@ -3928,8 +3928,581 @@ hashCode()
 	returns a hash code for the string
 subSequence()
 	returns a subsequence from the string
+``` 
+
+
+
+
+
+
+## Java Access Modifiers
+
+In this tutorial, we will learn about the Java Access Modifier, its types, and how to use them with the help of examples.
+What are Access Modifiers?
+
+In Java, access modifiers are used to set the accessibility (visibility) of classes, interfaces, variables, methods, constructors, data members, and the setter methods. For example,
+
+class Animal {
+    public void method1() {...}
+
+   private void method2() {...}
+}
+
+In the above example, we have declared 2 methods: method1() and method2(). Here,
+
+    method1 is public - This means it can be accessed by other classes.
+    method2 is private - This means it can not be accessed by other classes.
+
+Note the keyword public and private. These are access modifiers in Java. They are also known as visibility modifiers.
+
+Note: You cannot set the access modifier of getters methods.
+Types of Access Modifier
+
+Before you learn about types of access modifiers, make sure you know about Java Packages.
+
+There are four access modifiers keywords in Java and they are:
+Modifier
+				Description
+		
+Default
+				declarations are visible only within the package (package private)
+		
+Private
+				declarations are visible within the class only
+		
+Protected
+				declarations are visible within the package or all subclasses
+		
+Public
+				declarations are visible everywhere
+		
+Default Access Modifier
+
+If we do not explicitly specify any access modifier for classes, methods, variables, etc, then by default the default access modifier is considered. For example,
+
+package defaultPackage;
+
+```java
+class Logger {
+    void message(){
+        System.out.println("This is a message");
+    }
+}
 ```
+Run Code
+
+Here, the Logger class has the default access modifier. And the class is visible to all the classes that belong to the defaultPackage package. However, if we try to use the Logger class in another class outside of defaultPackage, we will get a compilation error.
+Private Access Modifier
+
+When variables and methods are declared private, they cannot be accessed outside of the class. For example,
+```java
+class Data {
+    // private variable
+    private String name;
+}
+
+public class Main {
+    public static void main(String[] main){
+
+        // create an object of Data
+        Data d = new Data();
+
+        // access private variable and field from another class
+        d.name = "Programiz";
+    }
+}
+```
+Run Code
+
+In the above example, we have declared a private variable named name. When we run the program, we will get the following error:
+
+Main.java:18: error: name has private access in Data
+        d.name = "Programiz";
+         ^
+
+The error is generated because we are trying to access the private variable of the Data class from the Main class.
+
+You might be wondering what if we need to access those private variables. In this case, we can use the getters and setters method. For example,
+```java
+class Data {
+    private String name;
+
+    // getter method
+    public String getName() {
+        return this.name;
+    }
+    // setter method
+    public void setName(String name) {
+        this.name= name;
+    }
+}
+public class Main {
+    public static void main(String[] main){
+        Data d = new Data();
+
+        // access the private variable using the getter and setter
+        d.setName("Programiz");
+        System.out.println(d.getName());
+    }
+}
+```
+Run Code
+
+Output:
+
+The name is Programiz
+
+In the above example, we have a private variable named name. In order to access the variable from the outer class, we have used methods: getName() and setName(). These methods are called getter and setter in Java.
+
+Here, we have used the setter method (setName()) to assign value to the variable and the getter method (getName()) to access the variable.
+
+We have used this keyword inside the setName() to refer to the variable of the class. To learn more on this keyword, visit Java this Keyword.
+
+Note: We cannot declare classes and interfaces private in Java. However, the nested classes can be declared private. To learn more, visit Java Nested and Inner Class.
+Protected Access Modifier
+
+When methods and data members are declared protected, we can access them within the same package as well as from subclasses. For example,
+```java
+class Animal {
+    // protected method
+    protected void display() {
+        System.out.println("I am an animal");
+    }
+}
+
+class Dog extends Animal {
+    public static void main(String[] args) {
+
+        // create an object of Dog class
+        Dog dog = new Dog();
+         // access protected method
+        dog.display();
+    }
+}
+```
+Run Code
+
+Output:
+
+I am an animal
+
+In the above example, we have a protected method named display() inside the Animal class. The Animal class is inherited by the Dog class. To learn more about inheritance, visit Java Inheritance.
+
+We then created an object dog of the Dog class. Using the object we tried to access the protected method of the parent class.
+
+Since protected methods can be accessed from the child classes, we are able to access the method of Animal class from the Dog class.
+
+Note: We cannot declare classes or interfaces protected in Java.
+## Public Access Modifier
+
+When methods, variables, classes, and so on are declared public, then we can access them from anywhere. The public access modifier has no scope restriction. For example,
+```java
+// Animal.java file
+// public class
+public class Animal {
+    // public variable
+    public int legCount;
+
+    // public method
+    public void display() {
+        System.out.println("I am an animal.");
+        System.out.println("I have " + legCount + " legs.");
+    }
+}
+
+// Main.java
+public class Main {
+    public static void main( String[] args ) {
+        // accessing the public class
+        Animal animal = new Animal();
+
+        // accessing the public variable
+        animal.legCount = 4;
+        // accessing the public method
+        animal.display();
+    }
+}
+```
+Run Code
+
+Output:
+
+I am an animal.
+I have 4 legs.
+
+Here,
+
+    The public class Animal is accessed from the Main class.
+    The public variable legCount is accessed from the Main class.
+    The public method display() is accessed from the Main class.
 
 
 
+
+
+
+## Java this Keyword
+
+In this article, we will learn about this keyword in Java, how and where to use them with the help of examples.
+this Keyword
+
+In Java, this keyword is used to refer to the current object inside a method or a constructor. For example,
+```java
+class Main {
+    int instVar;
+
+    Main(int instVar){
+        this.instVar = instVar;
+        System.out.println("this reference = " + this);
+    }
+
+    public static void main(String[] args) {
+        Main obj = new Main(8);
+        System.out.println("object reference = " + obj);
+    }
+}
+```
+Run Code
+
+Output:
+
+this reference = Main@23fc625e
+object reference = Main@23fc625e
+
+In the above example, we created an object named obj of the class Main. We then print the reference to the object obj and this keyword of the class.
+
+Here, we can see that the reference of both obj and this is the same. It means this is nothing but the reference to the current object.
+Use of this Keyword
+
+There are various situations where this keyword is commonly used.
+Using this for Ambiguity Variable Names
+
+In Java, it is not allowed to declare two or more variables having the same name inside a scope (class scope or method scope). However, instance variables and parameters may have the same name. For example,
+
+class MyClass {
+    // instance variable
+    int age;
+
+    // parameter
+    MyClass(int age){
+        age = age;
+    }
+}
+
+In the above program, the instance variable and the parameter have the same name: age. Here, the Java compiler is confused due to name ambiguity.
+
+In such a situation, we use this keyword. For example,
+
+First, let's see an example without using this keyword:
+```java
+class Main {
+
+    int age;
+    Main(int age){
+        age = age;
+    }
+
+    public static void main(String[] args) {
+        Main obj = new Main(8);
+        System.out.println("obj.age = " + obj.age);
+    }
+}
+```
+Run Code
+
+Output:
+
+obj.age = 0
+
+In the above example, we have passed 8 as a value to the constructor. However, we are getting 0 as an output. This is because the Java compiler gets confused because of the ambiguity in names between instance the variable and the parameter.
+
+Now, let's rewrite the above code using this keyword.
+```java
+class Main {
+
+    int age;
+    Main(int age){
+        this.age = age;
+    }
+
+    public static void main(String[] args) {
+        Main obj = new Main(8);
+        System.out.println("obj.age = " + obj.age);
+    }
+}
+```
+Run Code
+
+Output:
+
+obj.age = 8
+
+Now, we are getting the expected output. It is because when the constructor is called, this inside the constructor is replaced by the object obj that has called the constructor. Hence the age variable is assigned value 8.
+
+Also, if the name of the parameter and instance variable is different, the compiler automatically appends this keyword. For example, the code:
+```java
+class Main {
+    int age;
+
+    Main(int i) {
+        age = i;
+    }
+}
+
+is equivalent to:
+
+class Main {
+    int age;
+
+    Main(int i) {
+        this.age = i;
+    }
+}
+```
+this with Getters and Setters
+
+Another common use of this keyword is in setters and getters methods of a class. For example:
+```java
+class Main {
+   String name;
+
+   // setter method
+   void setName( String name ) {
+       this.name = name;
+   }
+
+   // getter method
+   String getName(){
+       return this.name;
+   }
+
+   public static void main( String[] args ) {
+       Main obj = new Main();
+
+       // calling the setter and the getter method
+       obj.setName("Toshiba");
+       System.out.println("obj.name: "+obj.getName());
+   }
+}
+```
+Run Code
+
+Output:
+
+obj.name: Toshiba
+
+Here, we have used this keyword:
+
+    to assign value inside the setter method
+    to access value inside the getter method
+
+
+
+
+
+## Java final keyword
+
+In this tutorial, we will learn about Java final variables, methods and classes with examples.
+
+In Java, the final keyword is used to denote constants. It can be used with variables, methods, and classes.
+
+Once any entity (variable, method or class) is declared final, it can be assigned only once. That is,
+
+    the final variable cannot be reinitialized with another value
+    the final method cannot be overridden
+    the final class cannot be extended
+
+### 1. Java final Variable
+
+In Java, we cannot change the value of a final variable. For example,
+```java
+class Main {
+  public static void main(String[] args) {
+
+    // create a final variable
+    final int AGE = 32;
+
+    // try to change the final variable
+    AGE = 45;
+    System.out.println("Age: " + AGE);
+  }
+}
+```
+Run Code
+
+In the above program, we have created a final variable named age. And we have tried to change the value of the final variable.
+
+When we run the program, we will get a compilation error with the following message.
+
+cannot assign a value to final variable AGE
+    AGE = 45;
+    ^
+
+Note: It is recommended to use uppercase to declare final variables in Java.
+### 2. Java final Method
+
+Before you learn about final methods and final classes, make sure you know about the Java Inheritance.
+
+In Java, the final method cannot be overridden by the child class. For example,
+```java
+class FinalDemo {
+    // create a final method
+    public final void display() {
+      System.out.println("This is a final method.");
+    }
+}
+
+class Main extends FinalDemo {
+  // try to override final method
+  public final void display() {
+    System.out.println("The final method is overridden.");
+  }
+
+  public static void main(String[] args) {
+    Main obj = new Main();
+    obj.display();
+  }
+}
+```
+Run Code
+
+In the above example, we have created a final method named display() inside the FinalDemo class. Here, the Main class inherits the FinalDemo class.
+
+We have tried to override the final method in the Main class. When we run the program, we will get a compilation error with the following message.
+
+ display() in Main cannot override display() in FinalDemo
+  public final void display() {
+                    ^
+  overridden method is final
+
+### 3. Java final Class
+
+In Java, the final class cannot be inherited by another class. For example,
+```java
+// create a final class
+final class FinalClass {
+  public void display() {
+    System.out.println("This is a final method.");
+  }
+}
+
+// try to extend the final class
+class Main extends FinalClass {
+  public  void display() {
+    System.out.println("The final method is overridden.");
+  }
+
+  public static void main(String[] args) {
+    Main obj = new Main();
+    obj.display();
+  }
+}
+```
+Run Code
+
+In the above example, we have created a final class named FinalClass. Here, we have tried to inherit the final class by the Main class.
+
+When we run the program, we will get a compilation error with the following message.
+
+cannot inherit from final FinalClass
+class Main extends FinalClass {
+                   ^
+
+
+
+
+
+## Java Recursion
+
+In this tutorial, you will learn about Java recursive function, its advantages and disadvantages.
+
+In Java, a method that calls itself is known as a recursive method. And, this process is known as recursion.
+
+A physical world example would be to place two parallel mirrors facing each other. Any object in between them would be reflected recursively.
+How Recursion works?
+A function is calling itself
+Working of Java Recursion
+
+In the above example, we have called the recurse() method from inside the main method. (normal method call). And, inside the recurse() method, we are again calling the same recurse method. This is a recursive call.
+
+In order to stop the recursive call, we need to provide some conditions inside the method. Otherwise, the method will be called infinitely.
+
+Hence, we use the if...else statement (or similar approach) to terminate the recursive call inside the method.
+Example: Factorial of a Number Using Recursion
+```java
+class Factorial {
+
+    static int factorial( int n ) {
+        if (n != 0)  // termination condition
+            return n * factorial(n-1); // recursive call
+        else
+            return 1;
+    }
+
+    public static void main(String[] args) {
+        int number = 4, result;
+        result = factorial(number);
+        System.out.println(number + " factorial = " + result);
+    }
+}
+```
+Run Code
+
+Output:
+
+4 factorial = 24
+
+In the above example, we have a method named factorial(). The factorial() is called from the main() method. with the number variable passed as an argument.
+
+Here, notice the statement,
+
+return n * factorial(n-1);
+
+The factorial() method is calling itself. Initially, the value of n is 4 inside factorial(). During the next recursive call, 3 is passed to the factorial() method. This process continues until n is equal to 0.
+
+When n is equal to 0, the if statement returns false hence 1 is returned. Finally, the accumulated result is passed to the main() method.
+
+
+
+## Java instanceof Operator
+
+In this tutorial, you will learn about Java instanceof operator in detail with the help of examples.
+
+The instanceof operator in Java is used to check whether an object is an instance of a particular class or not.
+
+Its syntax is
+
+objectName instanceOf className;
+
+Here, if objectName is an instance of className, the operator returns true. Otherwise, it returns false.
+Example: Java instanceof
+```java
+class Main {
+
+  public static void main(String[] args) {
+
+    // create a variable of string type
+    String name = "Programiz";
+    
+    // checks if name is instance of String
+    boolean result1 = name instanceof String;
+    System.out.println("name is an instance of String: " + result1);
+
+    // create an object of Main
+    Main obj = new Main();
+
+    // checks if obj is an instance of Main
+    boolean result2 = obj instanceof Main;
+    System.out.println("obj is an instance of Main: " + result2);
+  }
+}
+```
+Run Code
+
+Output
+
+name is an instance of String: true
+obj is an instance of Main: true
+
+In the above example, we have created a variable name of the String type and an object obj of the Main class.
 
