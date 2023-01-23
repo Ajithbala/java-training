@@ -4781,16 +4781,92 @@ There are five types of inheritance.
 In single inheritance, a single subclass extends from a single superclass. For example,
 Class A inherits from class B.
 Java Single Inheritance
+
+```java
+
+    class Animal{  
+    void eat(){System.out.println("eating...");}  
+    }  
+    class Dog extends Animal{  
+    void bark(){System.out.println("barking...");}  
+    }  
+    class TestInheritance{  
+    public static void main(String args[]){  
+    Dog d=new Dog();  
+    d.bark();  
+    d.eat();  
+    }}  
+
+Output:
+
+barking...
+eating...
+
+```
+
+
 ### 2. Multilevel Inheritance
 
 In multilevel inheritance, a subclass extends from a superclass and then the same subclass acts as a superclass for another class. For example,
 Class B inherits from class A and class C inherits from class B.
 Java Multilevel Inheritance
+
+```java
+    class Animal{  
+    void eat(){System.out.println("eating...");}  
+    }  
+    class Dog extends Animal{  
+    void bark(){System.out.println("barking...");}  
+    }  
+    class BabyDog extends Dog{  
+    void weep(){System.out.println("weeping...");}  
+    }  
+    class TestInheritance2{  
+    public static void main(String args[]){  
+    BabyDog d=new BabyDog();  
+    d.weep();  
+    d.bark();  
+    d.eat();  
+    }}  
+
+Output:
+
+weeping...
+barking...
+eating...
+
+
+```
 ### 3. Hierarchical Inheritance
 
 In hierarchical inheritance, multiple subclasses extend from a single superclass. For example,
 Both classes B and C inherit from the single class A.
 Java Hierarchical Inheritance
+```java
+
+    class Animal{  
+    void eat(){System.out.println("eating...");}  
+    }  
+    class Dog extends Animal{  
+    void bark(){System.out.println("barking...");}  
+    }  
+    class Cat extends Animal{  
+    void meow(){System.out.println("meowing...");}  
+    }  
+    class TestInheritance3{  
+    public static void main(String args[]){  
+    Cat c=new Cat();  
+    c.meow();  
+    c.eat();  
+    //c.bark();//C.T.Error  
+    }}  
+
+Output:
+
+meowing...
+eating...
+```
+
 ### 4. Multiple Inheritance
 
 In multiple inheritance, a single subclass extends from multiple superclasses. For example,
@@ -4798,6 +4874,8 @@ Class C inherits from both classes A and B.
 Java Multiple Inheritance
 
 Note: Java doesn't support multiple inheritance. However, we can achieve multiple inheritance using interfaces. To learn more, visit Java implements multiple inheritance.
+
+
 ### 5. Hybrid Inheritance
 
 Hybrid inheritance is a combination of two or more types of inheritance. For example,
